@@ -211,7 +211,7 @@ kubectl apply -f <(istioctl kube-inject -f ./services/ball/Deployment-v2.yml)
 kubectl apply -f ./rbac/ball-v1-only-role.yml
 
 ## To clean up everything
-# Kubernetes
+### Kubernetes
 ```bash
 kubectl delete deployments -l project=mesh-arena
 kubectl delete svc -l project=mesh-arena
@@ -226,9 +226,11 @@ kubectl delete clusterrbacconfig -l project=mesh-arena
 kubetcl delete destinationrule default -n istio-system
 ```
 
-# Openshift
+### Openshift
 
 ```bash
+oc delete deployments --all
+oc delete svc --all
 oc delete virtualservices --all
 oc delete destinationrules  --all
 oc delete gateways  --all
