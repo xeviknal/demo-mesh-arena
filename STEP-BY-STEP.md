@@ -213,4 +213,7 @@ kubectl delete virtualservices -l project=mesh-arena
 kubectl delete destinationrules -l project=mesh-arena
 kubectl delete policies -l project=mesh-arena
 kubectl delete meshpolicies -l project=mesh-arena
+kubectl delete servicerole -l project=mesh-arena
+kubectl delete servicerolebinding -l project=mesh-arena
+kubectl delete clusterrbacconfig -l project=mesh-arena
 ```
