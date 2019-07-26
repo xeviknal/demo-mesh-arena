@@ -1,0 +1,22 @@
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRole
+metadata:
+  name: ball-role
+spec:
+  rules:
+  - services: ["ball.mesh-arena.svc.cluster.local"]
+    methods: ["*"]
+    constraints:
+      - key: 'destination.labels[version]'
+        values: ["v1"]
+---
+apiVersion: "rbac.istio.io/v1alpha1"
+kind: ServiceRoleBinding
+metadata:
+  name: bind-ball-role
+spec:
+  subjects:
+  - user: "*"
+  roleRef:
+    kind: ServiceRole
+    name: "ball-role"

@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ball-dr
+  labels:
+    project: mesh-arena
+spec:
+  host: ball
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: ball-v1
+    labels:
+      version: v1
+  - name: ball-v2
+    labels:
+      version: v2
