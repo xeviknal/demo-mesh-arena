@@ -160,6 +160,7 @@ kubectl apply -f ./services/ball/virtualservice-delay.yml
 
 ## Reset
 ```bash
+kubectl delete -f ./services/ball/destrule.yml
 kubectl delete -f ./services/ball/virtualservice-delay.yml
 ```
 
@@ -169,6 +170,13 @@ kubectl apply -f ./services/ball/destrule-enable-mtls.yml
 kubectl apply -f ./mtls/namespace/permissive.yml
 ```
 
+## Enable mTLs for whole mesh
+```bash
+kubectl delete -f ./services/ball/destrule-enable-mtls.yml
+kubectl delete -f ./mtls/namespace/permissive.yml
+kubectl apply -f ./mtls/mesh/meshpol-strict.yml
+kubectl apply -f ./mtls/mesh/destrule-mtls.yml
+```
 
 ## To clean up everything
 
