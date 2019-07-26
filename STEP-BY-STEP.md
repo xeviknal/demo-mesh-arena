@@ -223,6 +223,7 @@ kubectl delete meshpolicies -l project=mesh-arena
 kubectl delete servicerole -l project=mesh-arena
 kubectl delete servicerolebinding -l project=mesh-arena
 kubectl delete clusterrbacconfig -l project=mesh-arena
+kubetcl delete destinationrule default -n istio-system
 ```
 
 # Openshift
@@ -236,4 +237,5 @@ oc delete meshpolicies  --all
 oc delete servicerole  --all
 oc delete servicerolebinding  --all
 oc delete clusterrbacconfig  --all
+oc delete destinationrule default -n istio-system
 ```
