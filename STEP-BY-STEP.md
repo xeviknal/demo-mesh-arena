@@ -145,10 +145,17 @@ kubectl apply -f ./services/ball/virtualservice-mirrored.yml
 kubectl apply -f <(istioctl kube-inject -f ./services/ball/Deployment-burst.yml)
 ```
 
-## Remove shadowing, put circuit breaking
+## Remove shadowing, put circuit breaking (Outlier Detection)
 ```bash
 kubectl delete -f ./services/ball/virtualservice-mirrored.yml
 kubectl apply -f ./services/ball/destrule-outlier.yml
+````
+
+## Remove OutlierDetection, put Fault Injection (7s delay)
+```bash
+kubectl delete -f ./services/ball/Deployment-burst.yml
+kubectl apply -f ./services/ball/destrule.yml
+kubectl apply -f ./services/ball/virtualservice-delay.yml
 ````
 
 ## To clean up everything

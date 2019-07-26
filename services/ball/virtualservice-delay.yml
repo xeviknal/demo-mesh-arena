@@ -1,0 +1,28 @@
+# Scenario 1: 7s delay
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ball-vs
+  labels:
+    project: mesh-arena
+spec:
+spec:
+  hosts:
+    - ball
+  http:
+    - fault:
+        delay:
+          fixedDelay: 7s
+          percent: 100
+      match:
+        - sourceLabels:
+            version: locals
+      route:
+        - destination:
+            host: ball
+            subset: ball-v1
+    - route:
+        - destination:
+            host: ball
+            subset: ball-v1
