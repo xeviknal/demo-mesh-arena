@@ -79,9 +79,10 @@ steps performed at the beginning of the game.
 ## Deploy microservice UI
 
 ```bash
+kubectl apply -f ./services/ui/serviceaccount.yml
 kubectl apply -f <(istioctl kube-inject -f ./services/ui/Deployment.yml)
 kubectl create -f ./services/ui/Service.yml
-kubectl apply -f mesh-arena-gateway.yaml 
+kubectl apply -f mesh-arena-gateway.yaml
 ```
 
 ## Open in browser
@@ -96,14 +97,17 @@ Open http://localhost:8080 in a browser.
 
 ## Deploy stadium & ball
 ```bash
+kubectl apply -f ./services/stadium/serviceaccount.yml
 kubectl apply -f <(istioctl kube-inject -f ./services/stadium/Deployment-Smaller.yml)
 kubectl create -f ./services/stadium/Service.yml
+kubectl apply -f ./services/ball/serviceaccount.yml
 kubectl apply -f <(istioctl kube-inject -f ./services/ball/Deployment.yml)
 kubectl create -f ./services/ball/Service.yml
 ```
 
 ## Deploy 2x2 players
 ```bash
+kubectl apply -f ./services/ai/serviceaccount.yml
 kubectl apply -f <(istioctl kube-inject -f ./services/ai/Deployment-2-locals.yml)
 kubectl apply -f <(istioctl kube-inject -f ./services/ai/Deployment-2-visitors.yml)
 kubectl create -f ./services/ai/Service.yml
@@ -178,6 +182,15 @@ kubectl apply -f ./mtls/mesh/meshpol-strict.yml
 kubectl apply -f ./mtls/mesh/destrule-mtls.yml
 ```
 
+## Enable RBAC system
+```bash
+kubectl apply -f ./mtls/mesh/enable-rbac.yml
+kubectl apply -f ./mtls/mesh/ai-role.yml
+kubectl apply -f ./mtls/mesh/ball-role.yml
+kubectl apply -f ./mtls/mesh/stadium-role.yml
+kubectl apply -f ./mtls/mesh/ui-role.yml
+```
+
 ## To clean up everything
 
 ```bash
@@ -185,4 +198,6 @@ kubectl delete deployments -l project=mesh-arena
 kubectl delete svc -l project=mesh-arena
 kubectl delete virtualservices -l project=mesh-arena
 kubectl delete destinationrules -l project=mesh-arena
+kubectl delete policies -l project=mesh-arena
+kubectl delete meshpolicies -l project=mesh-arena
 ```

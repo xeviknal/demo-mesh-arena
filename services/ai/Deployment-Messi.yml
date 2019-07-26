@@ -23,6 +23,7 @@ spec:
         version: messi
         vm: hotspot
     spec:
+      serviceAccountName: mesharena-ai
       containers:
       - image: jotak/demo-mesh-arena-ai:1.1.5
         imagePullPolicy: IfNotPresent

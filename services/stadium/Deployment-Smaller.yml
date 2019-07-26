@@ -22,6 +22,7 @@ spec:
         app: stadium
         version: small
     spec:
+      serviceAccountName: mesharena-stadium
       containers:
       - image: jotak/demo-mesh-arena-stadium:1.1.5
         imagePullPolicy: IfNotPresent

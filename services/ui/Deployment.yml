@@ -22,6 +22,7 @@ spec:
         app: ui
         version: v1
     spec:
+      serviceAccountName: mesharena-ui
       containers:
       - image: jotak/demo-mesh-arena-ui:1.1.5
         imagePullPolicy: IfNotPresent

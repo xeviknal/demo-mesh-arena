@@ -23,6 +23,7 @@ spec:
         version: visitors
         vm: openj9
     spec:
+      serviceAccountName: mesharena-ai
       containers:
       - image: jotak/demo-mesh-arena-oj9-ai:1.1.5
         imagePullPolicy: IfNotPresent

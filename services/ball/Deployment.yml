@@ -22,6 +22,7 @@ spec:
         app: ball
         version: v1
     spec:
+      serviceAccountName: mesharena-ball
       containers:
       - image: jotak/demo-mesh-arena-ball:1.1.5
         imagePullPolicy: IfNotPresent
