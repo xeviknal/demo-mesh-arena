@@ -204,16 +204,36 @@ kubectl apply -f ./rbac/ball-role.yml
 kubectl apply -f ./rbac/ai-role.yml
 ```
 
-## To clean up everything
+# Constraint traffic to second ball
+kubectl apply -f ./services/ball/destrule-mtls.yml
+kubectl apply -f ./services/ball/virtualservice-75-25.yml
+kubectl apply -f <(istioctl kube-inject -f ./services/ball/Deployment-v2.yml)
+kubectl apply -f ./rbac/ball-v1-only-role.yml
 
+## To clean up everything
+# Kubernetes
 ```bash
 kubectl delete deployments -l project=mesh-arena
 kubectl delete svc -l project=mesh-arena
 kubectl delete virtualservices -l project=mesh-arena
 kubectl delete destinationrules -l project=mesh-arena
+kubectl delete gateways -l project=mesh-arena
 kubectl delete policies -l project=mesh-arena
 kubectl delete meshpolicies -l project=mesh-arena
 kubectl delete servicerole -l project=mesh-arena
 kubectl delete servicerolebinding -l project=mesh-arena
 kubectl delete clusterrbacconfig -l project=mesh-arena
+```
+
+# Openshift
+
+```bash
+oc delete virtualservices --all
+oc delete destinationrules  --all
+oc delete gateways  --all
+oc delete policies  --all
+oc delete meshpolicies  --all
+oc delete servicerole  --all
+oc delete servicerolebinding  --all
+oc delete clusterrbacconfig  --all
 ```
