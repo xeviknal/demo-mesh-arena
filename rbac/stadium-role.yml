@@ -5,15 +5,15 @@ metadata:
 spec:
   rules:
   - services: ["stadium.mesh-arena.svc.cluster.local"]
-    methods: ["GET"]
+    methods: ["*"]
 ---
 apiVersion: "rbac.istio.io/v1alpha1"
 kind: ServiceRoleBinding
 metadata:
-  name: bind-productpage-viewer
+  name: bind-stadium-role
 spec:
   subjects:
   - user: "*"
   roleRef:
     kind: ServiceRole
-    name: "productpage-viewer"
+    name: "stadium-role"

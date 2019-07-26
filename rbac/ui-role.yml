@@ -5,7 +5,7 @@ metadata:
 spec:
   rules:
   - services: ["*"]
-    methods: ["GET"]
+    methods: ["GET", "POST"]
     constraints:
     - key: "destination.labels[app]"
       values: ["ui"]
@@ -19,7 +19,7 @@ spec:
   - properties:
       source.namespace: "istio-system"
   - properties:
-      source.namespace: "bookinfo"
+      source.namespace: "mesh-arena"
   roleRef:
     kind: ServiceRole
     name: "service-viewer"

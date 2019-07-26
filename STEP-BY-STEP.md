@@ -59,6 +59,19 @@ For OpenShift users, you may have to grant extended permissions for Istio, logge
 ```bash
 oc new-project mesh-arena
 oc adm policy add-scc-to-user privileged -z default
+
+oc adm policy add-scc-to-user privileged -z mesharena-ui -n mesh-arena
+oc adm policy add-scc-to-user anyuid -z mesharena-ui -n mesh-arena
+
+oc adm policy add-scc-to-user privileged -z mesharena-ball -n mesh-arena
+oc adm policy add-scc-to-user anyuid -z mesharena-ball -n mesh-arena
+
+oc adm policy add-scc-to-user privileged -z mesharena-stadium -n mesh-arena
+oc adm policy add-scc-to-user anyuid -z mesharena-stadium -n mesh-arena
+
+oc adm policy add-scc-to-user privileged -z mesharena-ai -n mesh-arena
+oc adm policy add-scc-to-user anyuid -z mesharena-ai -n mesh-arena
+
 ```
 
 ## Jaeger
@@ -184,11 +197,11 @@ kubectl apply -f ./mtls/mesh/destrule-mtls.yml
 
 ## Enable RBAC system
 ```bash
-kubectl apply -f ./mtls/mesh/enable-rbac.yml
-kubectl apply -f ./mtls/mesh/ai-role.yml
-kubectl apply -f ./mtls/mesh/ball-role.yml
-kubectl apply -f ./mtls/mesh/stadium-role.yml
-kubectl apply -f ./mtls/mesh/ui-role.yml
+kubectl apply -f ./rbac/enable-rbac.yml
+kubectl apply -f ./rbac/ui-role.yml
+kubectl apply -f ./rbac/stadium-role.yml
+kubectl apply -f ./rbac/ball-role.yml
+kubectl apply -f ./rbac/ai-role.yml
 ```
 
 ## To clean up everything
