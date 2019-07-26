@@ -1,0 +1,9 @@
+apiVersion: "networking.istio.io/v1alpha3"
+kind: "DestinationRule"
+metadata:
+  name: "ball-enable-mtls"
+spec:
+  host: ball
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL

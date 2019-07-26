@@ -158,6 +158,18 @@ kubectl apply -f ./services/ball/destrule.yml
 kubectl apply -f ./services/ball/virtualservice-delay.yml
 ````
 
+## Reset
+```bash
+kubectl delete -f ./services/ball/virtualservice-delay.yml
+```
+
+## Enable mTLs for Ball comms
+```bash
+kubectl apply -f ./services/ball/destrule-enable-mtls.yml
+kubectl apply -f ./mtls/namespace/permissive.yml
+```
+
+
 ## To clean up everything
 
 ```bash
